@@ -15,7 +15,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
         <nav>
             <ul class="list">
                 <li class="title">
-                    <a href="index.html" data-type="index-link">customer-app documentation</a>
+                    <a href="index.html" data-type="index-link">@DylanTapiaVargas999/customer-app_tapia documentation</a>
                 </li>
 
                 <li class="divider"></li>
