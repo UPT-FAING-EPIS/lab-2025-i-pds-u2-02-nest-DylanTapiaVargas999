@@ -123,6 +123,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Implementación concreta de AbstractMessage para el envío de mensajes largos.
+Utiliza un IMessageSender para definir el canal de envío (por ejemplo, correo electrónico).</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -188,12 +196,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">libs/domain/src/long-message.ts:4</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">libs/domain/src/long-message.ts:8</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa una nueva instancia de LongMessage con el mecanismo de envío especificado.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -202,6 +212,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -216,6 +227,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Implementación de IMessageSender que define el canal de envío.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -257,11 +272,17 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/AbstractMessage.html#source" target="_self" >AbstractMessage:4</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/AbstractMessage.html#source" target="_self" >AbstractMessage:9</a></code>
 </div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Instancia del objeto responsable de enviar el mensaje</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -300,7 +321,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/AbstractMessage.html#source" target="_self" >AbstractMessage:9</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/AbstractMessage.html#source" target="_self" >AbstractMessage:23</a></code>
 </div>
                         </td>
                     </tr>
@@ -308,6 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Envía un mensaje largo utilizando el canal definido por messageSender.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -318,6 +341,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -332,6 +356,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contenido del mensaje a enviar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -341,7 +369,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Resultado del envío del mensaje.</p>
+
                             </div>
                 </td>
             </tr>
@@ -360,11 +389,25 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AbstractMessage } from &quot;./abstract-message&quot;;
 import { IMessageSender } from &quot;./imessage-sender.interface&quot;;
 
+/**
+ * Implementación concreta de AbstractMessage para el envío de mensajes largos.
+ * Utiliza un IMessageSender para definir el canal de envío (por ejemplo, correo electrónico).
+ */
 export class LongMessage extends AbstractMessage {
+    /**
+     * Inicializa una nueva instancia de LongMessage con el mecanismo de envío especificado.
+     * @param messageSender Implementación de IMessageSender que define el canal de envío.
+     */
     constructor(messageSender: IMessageSender) {
         super();
         this._messageSender &#x3D; messageSender;
     }
+
+    /**
+     * Envía un mensaje largo utilizando el canal definido por messageSender.
+     * @param Message Contenido del mensaje a enviar.
+     * @returns {string} Resultado del envío del mensaje.
+     */
     public SendMessage(Message: string): string {
         return this._messageSender.SendMessage(Message);
     }

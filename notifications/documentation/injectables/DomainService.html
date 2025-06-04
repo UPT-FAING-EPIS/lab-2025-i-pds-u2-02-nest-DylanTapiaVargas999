@@ -119,6 +119,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio principal del dominio de notificaciones.</p>
+<p>Este servicio puede ser extendido para incluir la lógica de negocio central
+relacionada con la gestión y envío de notificaciones dentro de la aplicación.</p>
+
+            </p>
 
 
 
@@ -132,6 +141,12 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 
+/**
+ * Servicio principal del dominio de notificaciones.
+ * 
+ * Este servicio puede ser extendido para incluir la lógica de negocio central
+ * relacionada con la gestión y envío de notificaciones dentro de la aplicación.
+ */
 @Injectable()
 export class DomainService {}
 </code></pre>

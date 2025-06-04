@@ -123,6 +123,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Implementación concreta de AbstractMessage para el envío de mensajes cortos.
+Utiliza un IMessageSender para definir el canal de envío (por ejemplo, SMS).
+Restringe el envío a mensajes de hasta 25 caracteres.</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -192,12 +201,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">libs/domain/src/short-message.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">libs/domain/src/short-message.ts:11</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa una nueva instancia de ShortMessage con el mecanismo de envío especificado.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -206,6 +217,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -220,6 +232,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Implementación de IMessageSender que define el canal de envío.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -260,10 +276,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">libs/domain/src/short-message.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">libs/domain/src/short-message.ts:11</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de error mostrado cuando el mensaje excede los 25 caracteres</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -293,11 +315,17 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/AbstractMessage.html#source" target="_self" >AbstractMessage:4</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/AbstractMessage.html#source" target="_self" >AbstractMessage:9</a></code>
 </div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Instancia del objeto responsable de enviar el mensaje</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -336,7 +364,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/AbstractMessage.html#source" target="_self" >AbstractMessage:11</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/AbstractMessage.html#source" target="_self" >AbstractMessage:29</a></code>
 </div>
                         </td>
                     </tr>
@@ -344,6 +372,9 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Envía un mensaje corto utilizando el canal definido por messageSender.
+Lanza una excepción si el mensaje excede los 25 caracteres.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -354,6 +385,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -368,6 +400,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contenido del mensaje a enviar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -377,7 +413,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Resultado del envío del mensaje.</p>
+
                             </div>
                 </td>
             </tr>
@@ -396,13 +433,31 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AbstractMessage } from &quot;./abstract-message&quot;;
 import { IMessageSender } from &quot;./imessage-sender.interface&quot;;
 
+/**
+ * Implementación concreta de AbstractMessage para el envío de mensajes cortos.
+ * Utiliza un IMessageSender para definir el canal de envío (por ejemplo, SMS).
+ * Restringe el envío a mensajes de hasta 25 caracteres.
+ */
 export class ShortMessage extends AbstractMessage {
+    /** Mensaje de error mostrado cuando el mensaje excede los 25 caracteres */
     public LARGE_ERROR_MESSAGE: string &#x3D; &quot;Unable to send the message as length &gt; 25 characters&quot;;
 
+    /**
+     * Inicializa una nueva instancia de ShortMessage con el mecanismo de envío especificado.
+     * @param messageSender Implementación de IMessageSender que define el canal de envío.
+     */
     constructor(messageSender: IMessageSender) {
         super();
         this._messageSender &#x3D; messageSender;
     }
+
+    /**
+     * Envía un mensaje corto utilizando el canal definido por messageSender.
+     * Lanza una excepción si el mensaje excede los 25 caracteres.
+     * @param Message Contenido del mensaje a enviar.
+     * @returns {string} Resultado del envío del mensaje.
+     * @throws {Error} Si el mensaje excede los 25 caracteres.
+     */
     public SendMessage(Message: string): string {
         if (Message.length &lt;&#x3D; 25)
             return this._messageSender.SendMessage(Message);

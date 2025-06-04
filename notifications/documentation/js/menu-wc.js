@@ -90,13 +90,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/DomainModule.html" data-type="entity-link" >DomainModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-DomainModule-caa429b55b038c4c6816b85cb1d498501fca34bb1af62cbbef934e2ef7fbfb25f2e1fde32a010909577d9c824e8e8c6a6deb3c9cd0bc33d73667992b5c44c330"' : 'data-bs-target="#xs-injectables-links-module-DomainModule-caa429b55b038c4c6816b85cb1d498501fca34bb1af62cbbef934e2ef7fbfb25f2e1fde32a010909577d9c824e8e8c6a6deb3c9cd0bc33d73667992b5c44c330"' }>
+                                        'data-bs-target="#injectables-links-module-DomainModule-fe06c7c875f2b81c9195144f2789bbf7a0b3f086cc14eda0c4cca3b32a54a129ea99666b4b36c84e47b62bedb7515cb190180c6af4c31b8707a41d04444c4cc8"' : 'data-bs-target="#xs-injectables-links-module-DomainModule-fe06c7c875f2b81c9195144f2789bbf7a0b3f086cc14eda0c4cca3b32a54a129ea99666b4b36c84e47b62bedb7515cb190180c6af4c31b8707a41d04444c4cc8"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-DomainModule-caa429b55b038c4c6816b85cb1d498501fca34bb1af62cbbef934e2ef7fbfb25f2e1fde32a010909577d9c824e8e8c6a6deb3c9cd0bc33d73667992b5c44c330"' :
-                                        'id="xs-injectables-links-module-DomainModule-caa429b55b038c4c6816b85cb1d498501fca34bb1af62cbbef934e2ef7fbfb25f2e1fde32a010909577d9c824e8e8c6a6deb3c9cd0bc33d73667992b5c44c330"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-DomainModule-fe06c7c875f2b81c9195144f2789bbf7a0b3f086cc14eda0c4cca3b32a54a129ea99666b4b36c84e47b62bedb7515cb190180c6af4c31b8707a41d04444c4cc8"' :
+                                        'id="xs-injectables-links-module-DomainModule-fe06c7c875f2b81c9195144f2789bbf7a0b3f086cc14eda0c4cca3b32a54a129ea99666b4b36c84e47b62bedb7515cb190180c6af4c31b8707a41d04444c4cc8"' }>
                                         <li class="link">
                                             <a href="injectables/DomainService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DomainService</a>
                                         </li>

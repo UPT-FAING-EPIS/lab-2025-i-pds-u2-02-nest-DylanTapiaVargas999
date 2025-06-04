@@ -196,6 +196,20 @@
 
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>Módulo Domain del sistema de notificaciones.</p>
+<p>Este módulo agrupa y proporciona los servicios relacionados con la lógica de dominio
+para la gestión de notificaciones dentro de la aplicación. Permite centralizar la lógica
+de negocio y facilita la reutilización de los servicios en otros módulos.</p>
+<p>Exporta:</p>
+<ul>
+<li>DomainService: Servicio principal que contiene la lógica de dominio para notificaciones.</li>
+</ul>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -230,6 +244,16 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 import { DomainService } from &#x27;./domain.service&#x27;;
 
+/**
+ * Módulo Domain del sistema de notificaciones.
+ * 
+ * Este módulo agrupa y proporciona los servicios relacionados con la lógica de dominio
+ * para la gestión de notificaciones dentro de la aplicación. Permite centralizar la lógica
+ * de negocio y facilita la reutilización de los servicios en otros módulos.
+ * 
+ * Exporta:
+ * - DomainService: Servicio principal que contiene la lógica de dominio para notificaciones.
+ */
 @Module({
   providers: [DomainService],
   exports: [DomainService],

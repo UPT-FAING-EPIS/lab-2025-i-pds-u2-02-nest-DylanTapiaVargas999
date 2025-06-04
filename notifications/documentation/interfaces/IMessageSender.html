@@ -126,6 +126,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Interfaz que define el contrato para el envío de mensajes.
+Implementa el patrón Strategy para permitir diferentes mecanismos de envío (correo, SMS, etc).</p>
+
+            </p>
 
 
         <section data-compodoc="block-index">
@@ -178,14 +186,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="2"
-                                    class="link-to-prism">libs/domain/src/icredit-card.interface.ts:2</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="11"
+                                    class="link-to-prism">libs/domain/src/icredit-card.interface.ts:11</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Envía un mensaje utilizando el canal implementado.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -196,6 +206,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -210,6 +221,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contenido del mensaje a enviar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -219,7 +234,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Confirmación o resultado del envío del mensaje.</p>
+
                             </div>
                 </td>
             </tr>
@@ -232,6 +248,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface IMessageSender {
+  /**
+   * Envía un mensaje utilizando el canal implementado.
+   * @param Message Contenido del mensaje a enviar.
+   * @returns {string} Confirmación o resultado del envío del mensaje.
+   */
   SendMessage(Message: string): string
 }</code></pre>
     </div>

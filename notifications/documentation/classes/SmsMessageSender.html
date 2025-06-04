@@ -123,6 +123,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Implementación de IMessageSender para el envío de mensajes por SMS.
+Esta clase simula el envío de un mensaje utilizando el canal de SMS.</p>
+
+            </p>
 
 
             <p class="comment">
@@ -188,14 +196,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="4"
-                                    class="link-to-prism">libs/domain/src/sms-message-sender.ts:4</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="14"
+                                    class="link-to-prism">libs/domain/src/sms-message-sender.ts:14</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Envía un mensaje utilizando el canal de SMS.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -206,6 +216,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -220,6 +231,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contenido del mensaje a enviar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -229,7 +244,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Confirmación del envío del mensaje por SMS.</p>
+
                             </div>
                 </td>
             </tr>
@@ -247,7 +263,17 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IMessageSender } from &quot;./imessage-sender.interface&quot;;
 
+/**
+ * Implementación de IMessageSender para el envío de mensajes por SMS.
+ * Esta clase simula el envío de un mensaje utilizando el canal de SMS.
+ */
 export class SmsMessageSender implements IMessageSender {
+    /**
+     * Envía un mensaje utilizando el canal de SMS.
+     * 
+     * @param Message Contenido del mensaje a enviar.
+     * @returns {string} Confirmación del envío del mensaje por SMS.
+     */
     SendMessage(Message: string): string {
         return &quot;&#x27;&quot; + Message + &quot;&#x27; : This Message has been sent using SMS&quot;;
     }
