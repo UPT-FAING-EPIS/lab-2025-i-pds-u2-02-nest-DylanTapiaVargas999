@@ -1,4 +1,4 @@
-name: Build, Test, Analyze and Publish NPM Package
+name: Build, Test, Analyze and Publish NPM Packages
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
   pull_request:
 
 jobs:
-  build-test-analyze-publish:
+  notifications-package:
+    name: Notifications - Build, Test, Analyze & Publish
     runs-on: ubuntu-latest
 
     steps:
@@ -29,16 +30,16 @@ jobs:
       - name: Upload test coverage artifact
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
+          name: notifications-coverage
           path: notifications/coverage
 
-      - name: SonarCloud Scan
+      - name: SonarCloud Scan (notifications)
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           projectBaseDir: notifications
           args: >
             -Dsonar.organization=dylan-tapia
-            -Dsonar.projectKey=dylan-tapia_lap1-u2-noti
+            -Dsonar.projectKey=dylan-tapia_noti
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,10 +62,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-  publish-documentation:
-    name: Publish Documentation
+  customer-app-test-analyze:
+    name: Customer App - Test & Analyze
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout repository
@@ -75,8 +75,17 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies (customer-app)
+      - name: Install dependencies
         run: cd customer-app && npm ci
+
+      - name: Run unit tests and generate coverage
+        run: cd customer-app && npm run test -- --coverage
+
+      - name: Upload test coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: customer-app-coverage
+          path: customer-app/coverage
 
       - name: SonarCloud Scan (customer-app)
         uses: SonarSource/sonarcloud-github-action@v2
@@ -84,43 +93,7 @@ jobs:
           projectBaseDir: customer-app
           args: >
             -Dsonar.organization=dylan-tapia
-            -Dsonar.projectKey=dylan-tapia_lap1-u2-cus
+            -Dsonar.projectKey=dylan-tapia_cus
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate documentation for customer-app with Compodoc
-        run: cd customer-app && npx @compodoc/compodoc -p tsconfig.json -d documentation --silent
-
-      - name: Deploy customer-app docs to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./customer-app/documentation
-          publish_branch: docs
-          destination_dir: customer-app
-
-      - name: Install dependencies (notifications)
-        run: cd notifications && npm ci
-
-      - name: SonarCloud Scan (notifications)
-        uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          projectBaseDir: notifications
-          args: >
-            -Dsonar.organization=dylan-tapia
-            -Dsonar.projectKey=dylan-tapia_notifications
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate documentation for notifications with Compodoc
-        run: cd notifications && npx @compodoc/compodoc -p tsconfig.json -d documentation --silent
-
-      - name: Deploy notifications docs to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./notifications/documentation
-          publish_branch: docs
-          destination_dir: notifications
